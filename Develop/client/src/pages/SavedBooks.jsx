@@ -1,4 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+
+// import { GET_ME } from '../utils/queries';
+
 import {
   Container,
   Card,
@@ -20,6 +24,7 @@ const SavedBooks = () => {
 
   useQuery(() => {
     const getUserData = async () => {
+      
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 

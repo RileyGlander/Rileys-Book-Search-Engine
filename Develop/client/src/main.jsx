@@ -6,6 +6,8 @@ import App from './App.jsx'
 import SearchBooks from './pages/SearchBooks'
 import SavedBooks from './pages/SavedBooks'
 
+// createBrowserRouter is assigned to router passing an array
+// of objects to be rendered
 const router = createBrowserRouter([
   {
     path: '/',
@@ -22,7 +24,8 @@ const router = createBrowserRouter([
     ]
   }
 ])
-
+// All of the router objetcs are sent here and
+// used to render the app
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
 )

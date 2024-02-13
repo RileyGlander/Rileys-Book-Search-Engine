@@ -1,10 +1,12 @@
 const { User, Book } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
+// Create the functions that fulfill the queries defined in `typeDefs.js`
 const resolvers = {
     Query: {
       me: async (parent, args, context) => {
         if (context.user) {
+          // This uses the parameter to find the matching class in the collection
           return User.findOne({ _id: context.user._id }).populate('thoughts');
         }
         throw AuthenticationError;
@@ -36,17 +38,17 @@ const resolvers = {
 
     saveBook: async (parent, { description }, context) => {
         if (context.user) {
-          const bookSchema = await Book.create({
+          const Book = await Book.create({
             description,
             authors: context.user.username,
           });
   
           await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $addToSet: { books: bookSchema._id } }
+            { $addToSet: { book: bookSchema._id } }
           );
   
-          return bookSchema;
+          return Book;
         }
         throw AuthenticationError;
         ('You need to be logged in!');
