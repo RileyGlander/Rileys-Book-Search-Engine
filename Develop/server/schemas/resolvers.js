@@ -12,6 +12,7 @@ const resolvers = {
         throw AuthenticationError;
       },
     },
+    // Create the functions that fulfill the mutations defined in `typeDefs.js`
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
           const user = await User.create({ username, email, password });
